@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: rgb(193, 226, 162);
+}
+
+/* CLASS: */
+.menu {
+    position: relative;
+    padding: 5px;
+    background-color: chartreuse;
+    width: 100%;
+
+}
+
+.navegacao {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    background-color: chartreuse;
+    font-size: 100%;
+}
+.logo {
+    /* position: absolute; */
+    left: 0;
+    width: 10%;
+    border-radius: 50px;
+    
+}
+
+
+.banner {
+    position: relative;
+    left: 16%;
+    width: 70%;
+}

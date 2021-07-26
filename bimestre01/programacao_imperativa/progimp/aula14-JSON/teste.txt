@@ -1,0 +1,1 @@
+{"fruta": "banana", "preco": 8.50, "tipo": ["prata", "maçã", "nanica", "da terra"], "origem": "brasil"}

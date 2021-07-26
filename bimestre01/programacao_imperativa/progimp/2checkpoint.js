@@ -19,6 +19,7 @@ console.log("Selecione uma opção: \n \n Pipoca = 1 \n Macarrao = 2 \n Carne = 
 
 function ligarMicroondas(opcao, tempoAlterado) {
     //definindo as opções e os valores que receberão cada variável
+
     if (opcao == 1) {
         tempoDoPrato = 10;
         identidadeDoPrato = "Pipoca"
@@ -39,8 +40,6 @@ function ligarMicroondas(opcao, tempoAlterado) {
     }
     prato = identidadeDoPrato;
 
-    function validarTempo() {
-
         if (tempoAlterado >= tempoDoPrato && tempoAlterado < tempoDoPrato * 2) {
             return `Prato selecionado: ${prato} \n O prato ${prato} está pronto. Bom apetite!!! :)`
         } else if (tempoAlterado >= tempoDoPrato * 2 && tempoAlterado < tempoDoPrato * 3) {
@@ -51,20 +50,19 @@ function ligarMicroondas(opcao, tempoAlterado) {
             return `Prato selecionado: ${prato} \n Tempo insuficiente para a preparação do(a): ${prato}`;
         }
     }
-    return validarTempo();
-}
+   
 console.log(ligarMicroondas(1, 19));
-console.log("-------------------------------------")
+console.log("-------------------------------------");
 console.log(ligarMicroondas(2, 17));
-console.log("-------------------------------------")
+console.log("-------------------------------------");
 console.log(ligarMicroondas(3, 15));
-console.log("-------------------------------------")
+console.log("-------------------------------------");
 console.log(ligarMicroondas(4, -2));
-console.log("-------------------------------------")
+console.log("-------------------------------------");
 console.log(ligarMicroondas(5, 15));
-console.log("-------------------------------------")
+console.log("-------------------------------------");
 console.log(ligarMicroondas(1, 20));
-console.log("-------------------------------------")
+console.log("-------------------------------------");
 console.log(ligarMicroondas(2, 7));
 
 
