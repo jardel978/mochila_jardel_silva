@@ -20,28 +20,28 @@ bimestre. Sua nota foi: 8.”;
 aprovado ou não, sendo a média da escola 7.
 3. Por fim, comente as etapas do código. */
 
-function Aluno(...notas) {
+function Aluno(...notas) {// utilizando Factory
     let aluno = {};
     aluno.notasArray = [];
     aluno.notasArray.push(...notas);
-    let media = aluno.notasArray.reduce((acumulador, nota) => {
+    aluno.media = aluno.notasArray.reduce((acumulador, nota) => {//cálculo de média
         return acumulador + nota;
     }) / aluno.notasArray.length;
 
-    aluno.notaBim = () => {
+    aluno.notaBim = () => {//método para ver notas por bimestre
         console.log("Olá, Aluno! Confira suas notas abaixo:\n")
         for (let i in aluno.notasArray) {
             console.log(`Sua nota no ${parseInt(i) + 1}º Bimestre foi: ${aluno.notasArray[i]}`);
         }
-        return `Média: ${media} \n`
+        return `Média: ${aluno.media} \n`
     }
 
-    aluno.status = () => {
-        if (media >= 7) {
-            return `Aluno aprovado com a média de ${media}. Parabéns!`
+    aluno.status = () => {//método para visualizar aprovação
+        if (aluno.media >= 7) {
+            return `Aluno aprovado com a média de ${aluno.media}. Parabéns!`
         }
         else {
-            return `Média de ${media} do Aluno insuficiente para a aprovação.`;
+            return `Média de ${aluno.media} do Aluno insuficiente para a aprovação.`;
         }
     }
 
@@ -50,3 +50,4 @@ function Aluno(...notas) {
 let aluno01 = Aluno(10, 8, 8, 5)
 console.log(aluno01.notaBim());
 console.log(aluno01.status());
+// console.log(aluno01.media);// consultando apenas a média do aluno01
