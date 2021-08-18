@@ -55,6 +55,18 @@ li {
   margin-left: 10%;
 }
 
+.circulo-2 {
+  position: absolute;
+  transform: translateX(70%);
+  width: 37px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  align-self: start;
+  transition-duration: 0.3s;
+  z-index: 1;
+}
+
 @keyframes deslizar-1 {
   0%  {transform: translateX(0%); }
   100%   { transform: translateX(100%); }
@@ -63,5 +75,6 @@ li {
   0%  {transform: translateX(100%); }
   100%   { transform: translateX(0%); }
 }
+
 
 
