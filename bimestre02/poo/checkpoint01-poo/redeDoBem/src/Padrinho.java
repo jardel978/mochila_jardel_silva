@@ -8,25 +8,20 @@ public class Padrinho extends Usuario implements ValidadorString{
     public Padrinho(String nome, String sobrenome, String contaUsuario, String genero, String senha, Causa causa,
                     ArrayList<String> listaHabilidades) throws StringException {
         super(nome, sobrenome, contaUsuario, genero, senha);
-//        boolean verificaNome = nome.toLowerCase().matches("[a-z]+");
-//        boolean verificaSobrenome = sobrenome.toLowerCase().matches("[a-z]+");
-//        boolean verificaConta = contaUsuario.toLowerCase().matches("[a-z]+");
-//        boolean verificaGenero = genero.toLowerCase().matches("[a-z]+");
-//        boolean verificaSenha = senha.toLowerCase().matches("[a-z]+");
-        if(validarString(nome)) {                                                         ;
-            throw new StringException("Esse campo aceita apenas caractéries do tipo String(Letras)");
+        if(!validarString(nome) || nome == null) {
+            throw new StringException("O campo (Nome) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
         }
-        if(validarString(sobrenome)) {                                                         ;
-            throw new StringException("Esse campo aceita apenas caractéries do tipo String(Letras)");
+        if(!validarString(sobrenome) || sobrenome == null) {
+            throw new StringException("O campo (Sobrenome) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
         }
-        if(validarString(contaUsuario)) {                                                         ;
-            throw new StringException("Esse campo aceita apenas caractéries do tipo String(Letras)");
+        if(!validarString(contaUsuario) || contaUsuario == null) {
+            throw new StringException("O campo (Conta do Usuário) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
         }
-        if(validarString(genero)) {                                                         ;
-            throw new StringException("Esse campo aceita apenas caractéries do tipo String(Letras)");
+        if(!validarString(genero) || genero == null) {
+            throw new StringException("O campo (Gênero) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
         }
-        if(validarString(senha)) {                                                         ;
-            throw new StringException("Esse campo aceita apenas caractéries do tipo String(Letras)");
+        if(senha == null || senha.length() >= 6) {
+            throw new StringException("O campo (Senha) não pode estar vazio e deve conter ao menos 6(seis) caracteres");
         }
         this.causa = causa;
         this.listaHabilidades = listaHabilidades;
