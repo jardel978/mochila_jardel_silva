@@ -4,42 +4,67 @@ public class Apadrinhado extends Usuario implements ValidadorString{
     private ArrayList<Publicacao> listaNecessidades = new ArrayList<>();
     private Causa causa;
 
-    public Apadrinhado(String nome, String sobrenome, String contaUsuario, String genero, String senha,
-                       ArrayList<Publicacao> listaNecessidades) throws StringException {
+    public Apadrinhado(String nome, String sobrenome, String contaUsuario, String genero, String senha) throws StringException {
         super(nome, sobrenome, contaUsuario, genero, senha);
-        if(!validarString(nome) || nome.equals(null)) {
-            throw new StringException("O campo (Nome) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
+        boolean vNome = !validarString(nome) || nome.equals("");
+        boolean vSobrenome = !validarString(sobrenome) || sobrenome.equals("");
+        boolean vContaUsuario = !validarString(contaUsuario) || contaUsuario.equals("");
+        boolean vGenero = !validarString(genero) || genero.equals("");
+        if (vNome || vSobrenome || vContaUsuario || vGenero) {
+            throw new StringException("Certifique-se de que não têm campos vazios ou com dados não compatíveis com " +
+                    "Strings" +
+                    "(Letras)");
         }
-        if(!validarString(sobrenome) || sobrenome.equals(null)) {
-            throw new StringException("O campo (Sobrenome) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
-        }
-        if(!validarString(contaUsuario) || contaUsuario.equals(null)) {
-            throw new StringException("O campo (Conta do Usuário) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
-        }
-        if(!validarString(genero) || genero.equals(null)) {
-            throw new StringException("O campo (Gênero) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
-        }
-        if(senha == null || senha.length() >= 6) {
+        if (senha.equals("") || senha.length() <= 6) {
             throw new StringException("O campo (Senha) não pode estar vazio e deve conter ao menos 6(seis) caracteres");
         }
-        this.causa = causa;
-        this.listaNecessidades = listaNecessidades;
     }
 
     @Override
     public String publicar(String necessidade, String mensagem) {
-        return "";
+        String resultado = "";
+        //instancia uma publicação caso esteja tudo certo e adiciona ela ao array de publicações do usuário
+        if(!necessidade.equals("") && !mensagem.equals("")){
+        Publicacao publicacao = new Publicacao(this, necessidade, mensagem);
+        this.getListaPublicacoes().add(publicacao);
+        resultado = "Publicação realizada com sucesso! " + "\n" + "Mensagem da publicação: " + publicacao.getMensagem();
+        } else
+            resultado = "Impossível realizar publicação: existe um ou mais campos vazios!";
+        return resultado;
     }
 
     @Override
-    public String apagarPublicacao(Publicacao<Usuario> publicacao) {
-        return "";
+    public String apagarPublicacao(int indexPublicacao) {//veridica a existência de uma publicação no array de
+        // publicações do usuário e, caso exista ela é removida pelo seu index nesse array
+        String resultado = "";
+        ArrayList<Publicacao> listaPublicacao = this.getListaPublicacoes();
+        if(indexPublicacao >= listaPublicacao.size())
+            resultado = "Essa publicação não existe ou já foi excluída anteriormente!";
+        else if(listaPublicacao.contains(listaPublicacao.get(indexPublicacao))){
+            listaPublicacao.remove(indexPublicacao);
+            resultado = "Publicação excluída com sucesso!";
+        }
+
+        return resultado;
     }
 
-    public Causa solicitarAjuda(Padrinho padrinho, Publicacao<Usuario> necessidade) {
-        return causa;
+    public String solicitarAjuda(Padrinho padrinho, int indexPublicacao) {//método de solicitação de ajuda onde é
+        // escolido um padrinho para pedir ajuda e informada qual a publicação será enviada como uma causa a esse
+        // padrinho.
+        ArrayList<Publicacao> listaPublicacao = this.getListaPublicacoes();
+        if (listaPublicacao.contains(listaPublicacao.get(indexPublicacao))) {
+            Publicacao<Usuario> publicacao = listaPublicacao.get(indexPublicacao);
+            String habilidadeSolicitada = publicacao.getNecessidade();
+            ArrayList<String> habilidadesDoPadrinho = padrinho.getListaHabilidades();
+            if (habilidadesDoPadrinho.contains(habilidadeSolicitada)) {
+                Causa causa = new Causa(publicacao);
+                padrinho.setCausa(causa);
+                return "Solicitação de ajuda enviada com sucesso!";
+            } else
+                return "Infelizmente o padrinho contatado não pode te ajudar com essa necessidade: (" + publicacao.getMensagem() + ")";
+        }
+        return "Publicação informada não encontrada! Por favor, informe uma publicação existente.";
     }
-
     @Override//método de validar entradas
     public boolean validarString(String campo) {
         return campo.toLowerCase().matches("[a-z]+");
@@ -47,5 +72,20 @@ public class Apadrinhado extends Usuario implements ValidadorString{
 
     public ArrayList<Publicacao> getListaNecessidades() {
         return listaNecessidades;
+    }
+
+    @Override
+    public String toString() {
+        return "Padrinho{" +
+                "nome='" + super.getNome()+ '\'' +
+                ", sobrenome='" + super.getSobrenome() + '\'' +
+                ", contaUsuario='" + super.getContaUsuario() + '\'' +
+                ", genero='" + super.getGenero() + '\'' +
+                ", senha='" + super.getSenha() + '\'' +
+                ", publicacao=" + super.getPublicacao() +
+//                ", listaPublicacoes=" + super.getListaPublicacoes() +
+                "causa=" + causa +
+                ", listaNecessidades=" + listaNecessidades +
+                '}';
     }
 }

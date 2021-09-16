@@ -2,29 +2,23 @@ import java.util.ArrayList;
 
 public class Padrinho extends Usuario implements ValidadorString{
     private Causa causa;
-    private ArrayList<String> listaHabilidades = new ArrayList<>();//array para receber as habilidades do Padrinho
+    private ArrayList<String> listaHabilidades = new ArrayList<String>();//array para receber as habilidades do Padrinho
     //Essas habilidades serão usadas para comparar com a necessidade do Apadrinhado, assim saberemos se esse Padrinho tem a habilidade para tal necessidade.
 
-    public Padrinho(String nome, String sobrenome, String contaUsuario, String genero, String senha, Causa causa,
-                    ArrayList<String> listaHabilidades) throws StringException {
+    public Padrinho(String nome, String sobrenome, String contaUsuario, String genero, String senha) throws StringException {
         super(nome, sobrenome, contaUsuario, genero, senha);
-        if(!validarString(nome) || nome == null) {
-            throw new StringException("O campo (Nome) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
+        boolean vNome = !validarString(nome) || nome.equals("");
+        boolean vSobrenome = !validarString(sobrenome) || sobrenome.equals("");
+        boolean vContaUsuario = contaUsuario.equals("");
+        boolean vGenero = !validarString(genero) || genero.equals("");
+        if (vNome || vSobrenome || vContaUsuario || vGenero) {
+            throw new StringException("Certifique-se de que não têm campos vazios ou com dados não compatíveis com " +
+                    "Strings" +
+                    "(Letras)");
         }
-        if(!validarString(sobrenome) || sobrenome == null) {
-            throw new StringException("O campo (Sobrenome) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
-        }
-        if(!validarString(contaUsuario) || contaUsuario == null) {
-            throw new StringException("O campo (Conta do Usuário) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
-        }
-        if(!validarString(genero) || genero == null) {
-            throw new StringException("O campo (Gênero) não pode estar vazio e aceita apenas caracteres do tipo String(Letras)");
-        }
-        if(senha == null || senha.length() >= 6) {
+        if (senha.equals("") || senha.length() <= 6) {
             throw new StringException("O campo (Senha) não pode estar vazio e deve conter ao menos 6(seis) caracteres");
         }
-        this.causa = causa;
-        this.listaHabilidades = listaHabilidades;
     }
 
     @Override//método de validar entradas
@@ -33,24 +27,48 @@ public class Padrinho extends Usuario implements ValidadorString{
     }
 
     @Override
-    public String publicar(String necessidade, String mensagem) {
-        Publicacao publicacao = super.getPublicacao();
-
-        return "";
+    public String publicar(String necessidade, String mensagem) {//instancia uma publicação caso esteja tudo certo e adiciona ela ao array de publicações do usuário
+        String resultado = "";
+        //instancia uma publicação caso esteja tudo certo e adiciona ela ao array de publicações do usuário
+        if(!necessidade.equals("") && !mensagem.equals("")){
+            Publicacao publicacao = new Publicacao(this, necessidade, mensagem);
+            this.getListaPublicacoes().add(publicacao);
+            resultado = "Publicação realizada com sucesso! " + "\n" + "Mensagem da publicação: " + publicacao.getMensagem();
+        } else
+            resultado = "Impossível realizar publicação: existe um ou mais campos vazios!";
+        return resultado;
     }
 
     @Override
-    public String apagarPublicacao(Publicacao<Usuario> publicacao) {
+    public String apagarPublicacao(int indexPublicacao) {//veridica a existência de uma publicação no array de
+        // publicações do usuário e, caso exista ela é removida pelo seu index nesse array
+        String resultado = "";
+        ArrayList<Publicacao> listaPublicacao = this.getListaPublicacoes();
+        if(indexPublicacao >= listaPublicacao.size())
+            resultado = "Essa publicação não existe ou já foi excluída anteriormente!";
+        else if(listaPublicacao.contains(listaPublicacao.get(indexPublicacao))){
+            listaPublicacao.remove(indexPublicacao);
+            resultado = "Publicação excluída com sucesso!";
+        }
 
-        return "";
+        return resultado;
     }
 
-    public String ajudar(Apadrinhado apadrinhado) {
-        return "";
+    public String ajudar() {
+        if(causa != null) {
+            return "Parabéns!!! Você acaba de ajudar alguém e está contribuindo para fazer do Mundo um lugar melhor! ";
+        } else
+            return "Incrível sua proatividade em ajudar o próximo! Você ainda não tem solicitação de ajuda, mas jajá " +
+                    "isso muda! Aguarde e logo " +
+                    "alguém te solicitará!";
     }
 
     public String informarNovaHabilidade(String habilidade) {
-        return "";
+        if(!habilidade.equals("")) {
+            listaHabilidades.add(habilidade);
+            return "Habilidade guardada com sucesso!";
+        } else
+            return "Habilidade inválida!";
     }
 
     public Causa getCausa() {
@@ -61,5 +79,26 @@ public class Padrinho extends Usuario implements ValidadorString{
         return listaHabilidades;
     }
 
+    public void setCausa(Causa causa) {
+        this.causa = causa;
+    }
 
+    public void setListaHabilidades(ArrayList<String> listaHabilidades) {
+        this.listaHabilidades = listaHabilidades;
+    }
+
+    @Override
+    public String toString() {
+        return "Padrinho{" +
+                "nome='" + super.getNome()+ '\'' +
+                ", sobrenome='" + super.getSobrenome() + '\'' +
+                ", contaUsuario='" + super.getContaUsuario() + '\'' +
+                ", genero='" + super.getGenero() + '\'' +
+                ", senha='" + super.getSenha() + '\'' +
+                ", publicacao=" + super.getPublicacao() +
+//                ", listaPublicacoes=" + super.getListaPublicacoes() +
+                "causa=" + causa +
+                ", listaHabilidades=" + listaHabilidades +
+                '}';
+    }
 }

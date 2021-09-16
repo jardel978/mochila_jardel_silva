@@ -4,26 +4,28 @@ import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-public class Publicacao<Usuario> implements ValidadorString{
+public class Publicacao<Usuario> {
     private Random random = new Random();//para gerar um ID para a publicação
-    private int id = random.nextInt(1700);
-    private LocalDateTime dataTime = LocalDateTime.now();//pegando data local no momento da instanciação da publicação
+    private int id;
+    private LocalDateTime dataTime;
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");//definindo formato para data
-    private String dataTimeFormatada = dataTime.format(formato);//formatando data
+    private String dataTimeFormatada;
     private Usuario criador;
     private String necessidade;
     private String mensagem;
 
     public Publicacao(Usuario criador, String necessidade, String mensagem) {
-        this.criador = criador;
-        this.necessidade = necessidade;
-        this.mensagem = mensagem;
+        if(!necessidade.equals("") && !mensagem.equals("")) {
+            this.dataTime = LocalDateTime.now();//pegando data local no momento da instanciação da publicação
+            this.dataTimeFormatada = dataTime.format(formato);//formatando data
+            this.id = random.nextInt(1700);
+            this.criador = criador;
+            this.necessidade = necessidade;
+            this.mensagem = mensagem;
+        } else
+            System.out.println("Erro com o tipos de dados informados pelo usuário");
     }
 
-    @Override
-    public boolean validarString(String campo) {
-        return campo.toLowerCase().matches("[a-z]+");
-    }
 
     public int getId() {
         return id;
@@ -47,5 +49,28 @@ public class Publicacao<Usuario> implements ValidadorString{
 
     public String getDataTimeFormatada() {
         return dataTimeFormatada;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Publicacao{" +
+//                "Id: " + id +
+//                ", Data e hora da publicaçaõ: " + dataTimeFormatada + '\'' +
+//                ", Necessidade: " + necessidade + '\'' +
+//                ", Mensagem: " + mensagem + '\'' +
+//                ", Criador: " + criador +
+//                '}';
+//    }
+
+
+    @Override
+    public String toString() {
+        return "Publicacao{" +
+                ", id=" + id +
+                ", dataTimeFormatada='" + dataTimeFormatada + '\'' +
+                ", criador=" + criador +
+                ", necessidade='" + necessidade + '\'' +
+                ", mensagem='" + mensagem + '\'' +
+                '}';
     }
 }

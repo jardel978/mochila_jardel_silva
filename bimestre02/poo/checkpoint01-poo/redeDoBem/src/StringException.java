@@ -1,14 +1,13 @@
 public class StringException extends Exception{
 
-    private String mensagem;
+    public StringException() { }
 
-    public StringException(String messagem) {
-        super();
-        this.mensagem = messagem;
+    public StringException(String message) {
+        super(message);
     }
 
     @Override
     public String toString() {
-        return "Algo de errado ocorreu: " + "\n" + mensagem;
+        return "Aseguinte excessão ocorreu: " + getClass().getName() + "Mensagem: " + getMessage();
     }
 }

@@ -18,7 +18,7 @@ public abstract class Usuario {
     }
 
     public abstract String publicar(String necessidade, String mensagem);
-    public abstract String apagarPublicacao(Publicacao<Usuario> publicacao);
+    public abstract String apagarPublicacao(int indexPublicacao);
 
     public String getNome() {
         return nome;
@@ -44,7 +44,48 @@ public abstract class Usuario {
         return publicacao;
     }
 
+    public void setPublicacao(Publicacao<Usuario> publicacao) {
+        this.publicacao = publicacao;
+    }
+
+    public void setListaPublicacoes(ArrayList<Publicacao> listaPublicacoes) {
+        this.listaPublicacoes = listaPublicacoes;
+    }
+
     public ArrayList<Publicacao> getListaPublicacoes() {
         return listaPublicacoes;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setContaUsuario(String contaUsuario) {
+        this.contaUsuario = contaUsuario;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", contaUsuario='" + contaUsuario + '\'' +
+                ", genero='" + genero + '\'' +
+                ", senha='" + senha + '\'' +
+                ", publicacao=" + publicacao +
+                ", listaPublicacoes=" + listaPublicacoes +
+                '}';
     }
 }
