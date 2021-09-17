@@ -40,7 +40,7 @@ public class Padrinho extends Usuario implements ValidadorString{
     }
 
     @Override
-    public String apagarPublicacao(int indexPublicacao) {//veridica a existência de uma publicação no array de
+    public String apagarPublicacao(int indexPublicacao) {//verifica a existência de uma publicação no array de
         // publicações do usuário e, caso exista ela é removida pelo seu index nesse array
         String resultado = "";
         ArrayList<Publicacao> listaPublicacao = this.getListaPublicacoes();

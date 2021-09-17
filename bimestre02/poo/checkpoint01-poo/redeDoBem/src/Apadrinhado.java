@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 
 public class Apadrinhado extends Usuario implements ValidadorString{
-//    private ArrayList<Publicacao> listaNecessidades = new ArrayList<>();
-    private Causa causa;
 
     public Apadrinhado(String nome, String sobrenome, String contaUsuario, String genero, String senha) throws StringException {
         super(nome, sobrenome, contaUsuario, genero, senha);
@@ -80,8 +78,6 @@ public class Apadrinhado extends Usuario implements ValidadorString{
                 ", contaUsuario='" + super.getContaUsuario() + '\'' +
                 ", genero='" + super.getGenero() + '\'' +
 //                ", senha='" + super.getSenha() + '\'' + (linha comentada para não exibir senha indevidamente) ;)
-//                ", causa='" + causa + '\'' +
-//                ', listaNecessidades=" + listaNecessidades +
                 '}';
     }
 }

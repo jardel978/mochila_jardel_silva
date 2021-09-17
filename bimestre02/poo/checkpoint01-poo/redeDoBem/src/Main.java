@@ -20,7 +20,7 @@ public class Main {
 //      EXECUTA O SISTEMA CASO O USUÁRIO DESEJAR!
         if (iniciarExperiencia == 0) {
             try {
-//                TEXTES
+//                TESTES
 //                String nomePadrinho = "Carlos";
 //                String sobrenomePadrinho = "Pereira";
 //                String contaPadrinho = "carlospp";
@@ -126,7 +126,7 @@ public class Main {
             } catch (StringException exc) {
                 JOptionPane.showMessageDialog(null, exc.getMessage());
             } finally {
-                JOptionPane.showMessageDialog(null, "O programa finalizado! Volte sempre!!!");
+                JOptionPane.showMessageDialog(null, "O programa foi finalizado! Volte sempre!!!");
             }
         }
 
