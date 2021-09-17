@@ -1,31 +1,31 @@
 import java.util.ArrayList;
 
 public class Apadrinhado extends Usuario implements ValidadorString{
-    private ArrayList<Publicacao> listaNecessidades = new ArrayList<>();
+//    private ArrayList<Publicacao> listaNecessidades = new ArrayList<>();
     private Causa causa;
 
     public Apadrinhado(String nome, String sobrenome, String contaUsuario, String genero, String senha) throws StringException {
         super(nome, sobrenome, contaUsuario, genero, senha);
         boolean vNome = !validarString(nome) || nome.equals("");
         boolean vSobrenome = !validarString(sobrenome) || sobrenome.equals("");
-        boolean vContaUsuario = !validarString(contaUsuario) || contaUsuario.equals("");
+        boolean vContaUsuario = contaUsuario.equals("");
         boolean vGenero = !validarString(genero) || genero.equals("");
         if (vNome || vSobrenome || vContaUsuario || vGenero) {
             throw new StringException("Certifique-se de que não têm campos vazios ou com dados não compatíveis com " +
                     "Strings" +
                     "(Letras)");
         }
-        if (senha.equals("") || senha.length() <= 6) {
+        if (senha.equals("") || senha.length() < 6) {
             throw new StringException("O campo (Senha) não pode estar vazio e deve conter ao menos 6(seis) caracteres");
         }
     }
 
     @Override
     public String publicar(String necessidade, String mensagem) {
+//        Instancia uma publicação caso esteja tudo correto e a adiciona ao array de publicações do usuário
         String resultado = "";
-        //instancia uma publicação caso esteja tudo certo e adiciona ela ao array de publicações do usuário
         if(!necessidade.equals("") && !mensagem.equals("")){
-        Publicacao publicacao = new Publicacao(this, necessidade, mensagem);
+        Publicacao publicacao = new Publicacao(this, necessidade.toLowerCase(), mensagem);
         this.getListaPublicacoes().add(publicacao);
         resultado = "Publicação realizada com sucesso! " + "\n" + "Mensagem da publicação: " + publicacao.getMensagem();
         } else
@@ -43,7 +43,8 @@ public class Apadrinhado extends Usuario implements ValidadorString{
         else if(listaPublicacao.contains(listaPublicacao.get(indexPublicacao))){
             listaPublicacao.remove(indexPublicacao);
             resultado = "Publicação excluída com sucesso!";
-        }
+        } else
+            resultado = "Algo inesperado aconteceu";
 
         return resultado;
     }
@@ -70,22 +71,17 @@ public class Apadrinhado extends Usuario implements ValidadorString{
         return campo.toLowerCase().matches("[a-z]+");
     }
 
-    public ArrayList<Publicacao> getListaNecessidades() {
-        return listaNecessidades;
-    }
 
     @Override
     public String toString() {
-        return "Padrinho{" +
+        return "Apadrinhado{" +
                 "nome='" + super.getNome()+ '\'' +
                 ", sobrenome='" + super.getSobrenome() + '\'' +
                 ", contaUsuario='" + super.getContaUsuario() + '\'' +
                 ", genero='" + super.getGenero() + '\'' +
-                ", senha='" + super.getSenha() + '\'' +
-                ", publicacao=" + super.getPublicacao() +
-//                ", listaPublicacoes=" + super.getListaPublicacoes() +
-                "causa=" + causa +
-                ", listaNecessidades=" + listaNecessidades +
+//                ", senha='" + super.getSenha() + '\'' + (linha comentada para não exibir senha indevidamente) ;)
+//                ", causa='" + causa + '\'' +
+//                ', listaNecessidades=" + listaNecessidades +
                 '}';
     }
 }

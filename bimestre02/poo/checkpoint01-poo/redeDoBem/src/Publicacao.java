@@ -20,7 +20,7 @@ public class Publicacao<Usuario> {
             this.dataTimeFormatada = dataTime.format(formato);//formatando data
             this.id = random.nextInt(1700);
             this.criador = criador;
-            this.necessidade = necessidade;
+            this.necessidade = necessidade.toLowerCase();
             this.mensagem = mensagem;
         } else
             System.out.println("Erro com o tipos de dados informados pelo usuário");

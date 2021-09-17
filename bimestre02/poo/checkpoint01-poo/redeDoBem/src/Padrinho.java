@@ -16,7 +16,7 @@ public class Padrinho extends Usuario implements ValidadorString{
                     "Strings" +
                     "(Letras)");
         }
-        if (senha.equals("") || senha.length() <= 6) {
+        if (senha.equals("") || senha.length() < 6) {
             throw new StringException("O campo (Senha) não pode estar vazio e deve conter ao menos 6(seis) caracteres");
         }
     }
@@ -27,11 +27,11 @@ public class Padrinho extends Usuario implements ValidadorString{
     }
 
     @Override
-    public String publicar(String necessidade, String mensagem) {//instancia uma publicação caso esteja tudo certo e adiciona ela ao array de publicações do usuário
+    public String publicar(String necessidade, String mensagem) {//instancia uma Publicação caso esteja tudo certo e
+        // adiciona ela ao array de publicações do usuário
         String resultado = "";
-        //instancia uma publicação caso esteja tudo certo e adiciona ela ao array de publicações do usuário
         if(!necessidade.equals("") && !mensagem.equals("")){
-            Publicacao publicacao = new Publicacao(this, necessidade, mensagem);
+            Publicacao publicacao = new Publicacao(this, necessidade.toLowerCase(), mensagem);
             this.getListaPublicacoes().add(publicacao);
             resultado = "Publicação realizada com sucesso! " + "\n" + "Mensagem da publicação: " + publicacao.getMensagem();
         } else
@@ -49,7 +49,8 @@ public class Padrinho extends Usuario implements ValidadorString{
         else if(listaPublicacao.contains(listaPublicacao.get(indexPublicacao))){
             listaPublicacao.remove(indexPublicacao);
             resultado = "Publicação excluída com sucesso!";
-        }
+        } else
+            resultado = "Algo inesperado aconteceu";
 
         return resultado;
     }
@@ -65,7 +66,7 @@ public class Padrinho extends Usuario implements ValidadorString{
 
     public String informarNovaHabilidade(String habilidade) {
         if(!habilidade.equals("")) {
-            listaHabilidades.add(habilidade);
+            listaHabilidades.add(habilidade.toLowerCase());
             return "Habilidade guardada com sucesso!";
         } else
             return "Habilidade inválida!";
@@ -94,9 +95,7 @@ public class Padrinho extends Usuario implements ValidadorString{
                 ", sobrenome='" + super.getSobrenome() + '\'' +
                 ", contaUsuario='" + super.getContaUsuario() + '\'' +
                 ", genero='" + super.getGenero() + '\'' +
-                ", senha='" + super.getSenha() + '\'' +
-                ", publicacao=" + super.getPublicacao() +
-//                ", listaPublicacoes=" + super.getListaPublicacoes() +
+//                ", senha='" + super.getSenha() + '\'' + (linha comentada para não exibir senha indevidamente) ;)
                 "causa=" + causa +
                 ", listaHabilidades=" + listaHabilidades +
                 '}';
