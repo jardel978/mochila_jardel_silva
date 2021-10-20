@@ -7,7 +7,7 @@ public class ControleEmbalagem extends Handler{
                         "saudável");
 
         if(!embalagemAceitavel)
-            System.out.println("Produto rejeitado. Embalagem em desacordo com as regas!");
+            System.out.println("Produto rejeitado. Embalagem em desacordo com as regas! " + "<< " + artigo.getEmbalagem() + " >>");
         else
             System.out.println("Produto aprovado!");
     }
