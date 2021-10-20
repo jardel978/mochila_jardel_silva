@@ -18,7 +18,8 @@ public class Main {
 
         Voo vooRj01 = new Voo(LocalDate.of(2021, 12, 20), LocalDate.of(2021, 12, 29), "Belo Horizonte", "Rio de Janeiro");
         Voo vooRj02 = new Voo(LocalDate.of(2021, 12, 22), LocalDate.of(2022, 12, 02), "Belo Horizonte", "Rio de Janeiro");
-        sistemaCadastroViajar.addVoo(vooRj01, vooRj02);
+        Voo vooPs01 = new Voo(LocalDate.of(2021, 12, 26), LocalDate.of(2022, 01, 07), "Belo Horizonte", "Porto Seguro");
+        sistemaCadastroViajar.addVoo(vooRj01, vooRj02, vooPs01);
 
 
         Hotel copacabanaPalace = new Hotel(LocalDate.of(2021, 12, 20), LocalDate.of(2021, 12, 29), "Rio de Janeiro", "Copacabana Palace");
@@ -27,6 +28,7 @@ public class Main {
 
         System.out.println("\n Nova pesquisa com voo e hotel cadastrado");
         facadeViajar.buscar("Rio de Janeiro", LocalDate.of(2021, 12, 20), LocalDate.of(2021, 12, 29));
+        facadeViajar.buscar("Porto Seguro", LocalDate.of(2021, 12, 26), LocalDate.of(2022, 01, 07));
 
     }
 }

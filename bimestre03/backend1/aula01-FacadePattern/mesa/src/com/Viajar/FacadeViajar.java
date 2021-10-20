@@ -25,19 +25,21 @@ public class FacadeViajar implements IFacadeViajar {
         if (voosDisponiveis.size() > 0) {
             for (Voo voo : voosDisponiveis) {
                 if (voo.getDestino().equalsIgnoreCase(destino) && voo.getDataPartida().equals(dataIda) && voo.getDataRetorno().equals(dataVolta)) {
+                    System.out.println("=================== Viajar.com ===================");
                     System.out.println("Voo Disponível para " + destino + " de acordo com as datas escolhidas: " + voo);
-                }
-            }
-        } else
-            System.out.println("Voos indisponíveis no momento.");
 
-        if (hoteisDisponiveis.size() > 0) {
-            for (Hotel hotel : hoteisDisponiveis) {
-                if (hotel.getCidade().equalsIgnoreCase(destino) && hotel.getDataEntrada().equals(dataIda) && hotel.getDataSaida().equals(dataVolta)) {
-                    System.out.println("Hotel disponível em " + destino + " de acordo com as datas escolhidas: " + hotel);
+                    if (hoteisDisponiveis.size() > 0) {
+                        for (Hotel hotel : hoteisDisponiveis) {
+                            if (hotel.getCidade().equalsIgnoreCase(voo.getDestino()) && hotel.getDataEntrada().equals(dataIda) && hotel.getDataSaida().equals(dataVolta)) {
+                                System.out.println("Hotel disponível em " + destino + " de acordo com as datas escolhidas: " + hotel);
+                                System.out.println("==================================================\n");
+                            }
+                        }
+                    }
                 }
             }
         } else
-            System.out.println("Hotéis indisponíveis no momento.");
+            System.out.println("Sem voos ou hotéis disponíveis para " + destino);
+
     }
 }
