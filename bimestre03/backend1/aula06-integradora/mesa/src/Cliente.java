@@ -15,20 +15,14 @@ public class Cliente {
             System.out.println(exc);
         }
 
-//        try {
-//            System.out.println(proxy.getSerie("WandaVision"));
-//        } catch (SerieNaoHabilitadaException exc) {
-//            System.out.println(exc);
-//        }
-
         try {
-            System.out.println(proxy.getSerie("WandaVision"));
+            System.out.println(proxy.getSerie("Big bang theory"));
         } catch (SerieNaoHabilitadaException exc) {
             System.out.println(exc);
         }
 
         try {
-            System.out.println(proxy.getSerie("WandaVision"));
+            System.out.println(proxy.getSerie("West World"));
         } catch (SerieNaoHabilitadaException exc) {
             System.out.println(exc);
         }

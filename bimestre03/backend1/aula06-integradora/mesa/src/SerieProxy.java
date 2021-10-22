@@ -15,7 +15,8 @@ public class SerieProxy implements ISerie{
          String result = "";
         if(this.gradeSerie.getSerie(nome).equalsIgnoreCase("www." + nome.toLowerCase().replaceAll(" ", "") + ".com.br")) {
             if (qtdViews >= 5) {
-                throw new SerieNaoHabilitadaException("Excede o número de reproduções permitidas!");
+                throw new SerieNaoHabilitadaException("Você excedeu o número de reproduções permitidas pelo seu " +
+                        "plano! Faça um upgrade e tenha reproduções ilimitadas!");
             } else {
                 contarViews();
                 result = this.gradeSerie.getSerie(nome);
