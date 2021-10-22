@@ -28,7 +28,7 @@ public class Cliente {
         }
 
         try {
-            System.out.println(proxy.getSerie("WanaVision"));
+            System.out.println(proxy.getSerie("Perdidos no Espaço"));
         } catch (SerieNaoHabilitadaException exc) {
             System.out.println(exc);
         }
@@ -40,6 +40,12 @@ public class Cliente {
             System.out.println(exc);
         }
 //
+        try {
+            System.out.println(proxy.getSerie("Altered Carbon"));
+        } catch (SerieNaoHabilitadaException exc) {
+            System.out.println(exc);
+        }
+
         try {
             System.out.println(proxy.getSerie("Star Trek"));
         } catch (SerieNaoHabilitadaException exc) {
