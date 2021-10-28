@@ -3,7 +3,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class DataSource {
+public class DataSource {//usando padrão Singleton para criação da classe de conexão com o Banco de Dados
+
+    private static DataSource instancia;
 
     private String url;
     private String port;
@@ -13,9 +15,8 @@ public class DataSource {
     private String password;
 
     private Connection connection;
-    private static DataSource instancia;
 
-    private DataSource() {
+    private DataSource() {//construtor
         try {
             this.port = "8082";
             this.dataBase = "~/test";
@@ -31,23 +32,23 @@ public class DataSource {
         }
     }
 
-    public static DataSource getInstance() {
+    public static DataSource getInstance() {//método que permite criação e dá acesso a apenas uma instância dessa classe
         if(instancia == null)
             instancia = new DataSource();
 
         return instancia;
     }
 
-    public void closeConectionDataSource() {
+    public void closeConectionDataSource() {//método que encerra a conexão com o Banco de Dados
         try {
             this.connection.close();
-            System.out.println("Banco de Dados desconectado.");
+            System.out.println("\nBanco de Dados desconectado.");
         } catch (Exception ex) {
             System.err.println("Erro ao desconectar com o Banco de Dados." + ex.getMessage());
         }
     }
 
-    public Connection getConnection() {
+    public Connection getConnection() {//método que retorna a conexão
         return connection;
     }
 }
