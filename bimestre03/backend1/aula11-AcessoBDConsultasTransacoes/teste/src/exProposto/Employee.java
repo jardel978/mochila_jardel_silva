@@ -17,4 +17,35 @@ public class Employee {
         this.empresa = empresa;
         this.data = data;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "ID=" + ID +
+                ", nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", empresa='" + empresa + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }
