@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.aluno__item {
+  border: solid 1px #111;
+  border-radius: 7px;
+  margin: 15px;
+}
+
+.aluno__item:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.281);
+  transition: ease-in 0.2s;
+}
