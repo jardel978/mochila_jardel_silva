@@ -58,6 +58,7 @@ public class PacienteDaoH2Imple implements IDaoGenerico<Paciente> {
 
     @Override
     public Optional<Paciente> buscar(Integer id) {
+
         log.debug("Buscando paciente com id  : " + id);
         Connection conexao = singletonConfigJDBC.conectarComBancoDeDados();
         PreparedStatement pstmt = null;
@@ -86,6 +87,7 @@ public class PacienteDaoH2Imple implements IDaoGenerico<Paciente> {
 
     @Override
     public void excluir(Integer id) {
+
         log.debug("Excluindo paciente com id: " + id);
         Connection conexao = singletonConfigJDBC.conectarComBancoDeDados();
         PreparedStatement pstmt = null;
@@ -103,6 +105,7 @@ public class PacienteDaoH2Imple implements IDaoGenerico<Paciente> {
 
     @Override
     public List<Paciente> buscarTodos() {
+
         log.debug("Buscando todos os pacientes");
         Connection conexao = singletonConfigJDBC.conectarComBancoDeDados();
         PreparedStatement pstmt = null;

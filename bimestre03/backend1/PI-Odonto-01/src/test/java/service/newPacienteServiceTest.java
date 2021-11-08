@@ -14,7 +14,6 @@ import org.junit.runners.MethodSorters;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(JUnit4.class)

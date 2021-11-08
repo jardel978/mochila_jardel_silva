@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class EnderecoService {
+
     private IDaoGenerico<Endereco> enderecoIDao;
 
     public EnderecoService(IDaoGenerico<Endereco> enderecoIDao) {

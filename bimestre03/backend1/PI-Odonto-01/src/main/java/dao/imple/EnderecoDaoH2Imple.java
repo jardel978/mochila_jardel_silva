@@ -3,6 +3,7 @@ package dao.imple;
 import dao.IDaoGenerico;
 import dao.configuracao.SingletonConfigJDBC;
 import model.Endereco;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.Optional;
 public class EnderecoDaoH2Imple implements IDaoGenerico<Endereco> {
 
     private SingletonConfigJDBC singletonConfigJDBC;
+    final static Logger log = Logger.getLogger(EnderecoDaoH2Imple.class);
 
     public EnderecoDaoH2Imple() {
         this.singletonConfigJDBC = SingletonConfigJDBC.getInstancia();
@@ -19,6 +21,8 @@ public class EnderecoDaoH2Imple implements IDaoGenerico<Endereco> {
 
     @Override
     public Endereco salvar(Endereco endereco) {
+
+        log.debug("Registrando endereco : " + endereco.toString());
         Connection conexao = singletonConfigJDBC.conectarComBancoDeDados();
         PreparedStatement pstmt = null;
         String query = String.format("INSERT INTO enderecos (" +
@@ -44,6 +48,8 @@ public class EnderecoDaoH2Imple implements IDaoGenerico<Endereco> {
 
     @Override
     public Optional<Endereco> buscar(Integer id) {
+
+        log.debug("Buscando endereco com id  : " + id);
         Connection conexao = singletonConfigJDBC.conectarComBancoDeDados();
         PreparedStatement pstmt = null;
 
@@ -69,6 +75,8 @@ public class EnderecoDaoH2Imple implements IDaoGenerico<Endereco> {
 
     @Override
     public void excluir(Integer id) {
+
+        log.debug("Excluindo endereco com id: " + id + "...");
         Connection conexao = singletonConfigJDBC.conectarComBancoDeDados();
         PreparedStatement pstmt = null;
 
@@ -87,6 +95,8 @@ public class EnderecoDaoH2Imple implements IDaoGenerico<Endereco> {
 
     @Override
     public List<Endereco> buscarTodos() {
+
+        log.debug("Buscando todos os enderecos");
         Connection conexao = singletonConfigJDBC.conectarComBancoDeDados();
         PreparedStatement pstmt = null;
 
