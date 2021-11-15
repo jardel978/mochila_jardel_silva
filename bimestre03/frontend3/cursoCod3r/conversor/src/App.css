@@ -1,22 +1,11 @@
 .App {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-flow: row wrap;
+  flex-direction: column;
+  background-image: url('./dinheiro.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
-
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

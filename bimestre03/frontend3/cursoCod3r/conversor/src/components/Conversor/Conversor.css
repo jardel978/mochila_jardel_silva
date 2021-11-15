@@ -1,0 +1,78 @@
+.conversor {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 1.5fr .5fr;
+    grid-template-areas: "parg parg"
+                         "moed moed"
+                         "input btn"
+                         "result result";
+    width: 370px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.158);
+    margin: 5px;
+    padding: 20px;
+}
+
+p {
+    text-align: center;
+    grid-area: parg;
+    background-color: rgba(248, 248, 217, 0.671);
+    border-radius: 7px;
+}
+
+.opcao {
+    grid-area: moed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+h2 {
+    margin: 0 15px;
+    margin-bottom: 15px;
+}
+
+input {
+    grid-area: input;
+    margin-left: 5px;
+    height: 40px;
+    border-radius: 1px 20px 20px;
+    text-align: center;
+    background-color: bisque;
+    outline: none;
+    border: none;
+    /* align-self: center; */
+}
+
+input:hover {
+    transform: scale(1.03);
+    transition: .3s;
+}
+
+input[type=button] {
+    grid-area: btn;
+    /* align-self: center; */
+    padding: 7px;
+    height: 35px;
+    background-color: rgba(49, 163, 125, 0.877);
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+input[type=button]:hover {
+    cursor: pointer;
+    background-color: rgb(25, 117, 86);
+    transition: .3s;
+    transform: scale(1.03);
+}
+
+.resultado {
+    grid-area: result;
+    align-self: start;
+    width: 200px;
+    background-color: rgba(197, 252, 175, 0.548);
+    padding: 3px;
+    border-radius: 10px;
+    border-bottom: 1px solid #000;
+}
